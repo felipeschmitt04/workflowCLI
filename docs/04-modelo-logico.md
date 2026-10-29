@@ -1,0 +1,50 @@
+# 4. Modelo lógico
+
+O modelo lógico será derivado do modelo conceitual e implementado em
+PostgreSQL. A aplicação utilizará a arquitetura **schema-per-project**:
+
+- o schema `public` terá o catálogo central de projetos;
+- cada projeto terá um schema próprio;
+- cada schema de projeto conterá o modelo completo da aplicação;
+- as tabelas de projetos diferentes não compartilharão dados de domínio.
+
+Cada tabela deverá indicar sua chave primária, suas chaves estrangeiras,
+atributos obrigatórios e regras de integridade.
+
+## 4.1 Tabelas previstas
+
+### Catálogo central (`public`)
+
+- `projeto`
+
+### Schema de cada projeto
+
+- `participante`
+- `status`
+- `prioridade`
+- `categoria`
+- `marco`
+- `tarefa`
+- `etiqueta`
+- `tarefa_etiqueta`
+- `comentario`
+- `dependencia_tarefa`
+
+## 4.2 Regras a definir no modelo final
+
+- unicidade do nome ou identificador de projetos;
+- unicidade de e-mail de participantes;
+- valores permitidos para status e prioridade;
+- obrigatoriedade de projeto e título na tarefa;
+- comportamento ao excluir um projeto com tarefas;
+- comportamento ao excluir participante responsável por tarefas;
+- prevenção de uma tarefa depender dela mesma;
+- prevenção de dependências duplicadas;
+- obrigatoriedade ou não de data de conclusão.
+
+O catálogo central deverá registrar o nome físico do schema de cada projeto.
+O schema deverá ser criado e removido com confirmação explícita, e sua
+identificação deverá ser validada antes da execução de SQL dinâmico.
+
+O script DDL deverá ser produzido a partir deste modelo, evitando manter uma
+versão diferente da estrutura efetivamente executada pela aplicação.

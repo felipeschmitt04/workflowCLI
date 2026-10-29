@@ -1,0 +1,108 @@
+# 1. Objetivo geral e escopo
+
+## 1.1 Objetivo geral
+
+O workflowCLI é um sistema de gerenciamento de projetos e tarefas voltado
+para pequenas equipes de desenvolvimento, como grupos de estudantes e
+pesquisadores. O sistema centraliza informações sobre participantes, projetos,
+tarefas, prioridades, prazos e dependências em um banco de dados PostgreSQL.
+Cada projeto possui seu próprio schema, contendo o modelo completo da
+aplicação e mantendo seus dados isolados dos demais projetos.
+Sua interface TUI, desenvolvida com a biblioteca Textual e executada no
+terminal, permite consultar e manipular os dados de forma objetiva, sem
+depender de uma aplicação gráfica. Como recurso complementar, o sistema pode
+integrar-se a repositórios Git locais e à API do GitHub para acompanhar
+commits, issues e pull requests. O objetivo é oferecer uma visão unificada do
+planejamento do trabalho e da atividade de desenvolvimento, mantendo o
+gerenciamento principal sob controle da aplicação.
+
+## 1.2 Escopo principal
+
+Fazem parte do núcleo do sistema:
+
+- cadastro e manutenção de participantes;
+- cadastro e manutenção de projetos;
+- associação de participantes a projetos;
+- cadastro e manutenção de tarefas;
+- controle de status, prioridade, prazo e responsável;
+- etiquetas, comentários e dependências entre tarefas;
+- consultas agregadas sobre projetos e tarefas;
+- criação, carga inicial e remoção das tabelas do banco;
+- sugestão de tarefas semelhantes por meio de embeddings.
+
+## 1.3 Arquitetura multi-tenant
+
+O banco PostgreSQL utilizará a abordagem **schema-per-project**. Um catálogo
+central no schema `public` manterá o identificador, o nome e o nome do schema
+de cada projeto. Para cada projeto cadastrado, a aplicação criará um schema
+exclusivo contendo o modelo completo do sistema e os dados daquele projeto.
+
+Ao ser executada dentro da pasta de um projeto, a aplicação identificará o
+schema correspondente e configurará o `search_path` da conexão para operar
+somente naquele contexto. Projetos diferentes não compartilharão tarefas,
+participantes ou demais registros de domínio.
+
+Para a demonstração da disciplina, a opção de criar e carregar o banco poderá
+atuar sobre um único schema de projeto, e a opção de remoção poderá excluir
+todos os dados e tabelas desse schema. Também deverá existir uma operação de
+remoção do schema completo, com confirmação explícita, quando o objetivo for
+eliminar o projeto inteiro.
+
+## 1.4 Integrações opcionais
+
+A aplicação poderá oferecer integrações que não impedem o funcionamento do
+núcleo:
+
+- **GitHub:** listar, criar, editar e fechar issues; adicionar comentários e
+  labels; consultar e criar pull requests; consultar branches e commits.
+- **Git local:** identificar o repositório atual e exibir branches, histórico
+  de commits e status por meio do executável `git`.
+
+O GitHub CLI (`gh`) será utilizado para autenticar o usuário e realizar as
+chamadas à API. A aplicação não armazenará tokens no banco nem em arquivos do
+projeto.
+
+## 1.5 Fluxo de inicialização
+
+O comando principal da aplicação será `workflowcli`. Ele deverá ser executado
+dentro da pasta que representa o projeto de trabalho.
+
+Na primeira execução em uma pasta, quando nenhum marcador local for
+encontrado, a aplicação deverá:
+
+1. solicitar as informações iniciais do projeto;
+2. validar o nome e o identificador que serão usados;
+3. registrar o projeto no catálogo central do schema `public`;
+4. criar o schema exclusivo do projeto;
+5. criar as tabelas do modelo nesse schema;
+6. carregar os dados iniciais, quando aplicável;
+7. gravar um marcador local com a referência do projeto e do schema.
+
+Nas execuções seguintes, a aplicação deverá localizar o marcador na pasta
+atual ou em um diretório pai, abrir a conexão com o schema indicado e iniciar
+diretamente a interface TUI. O marcador não deverá armazenar credenciais do
+banco ou tokens do GitHub.
+
+Se o marcador estiver ausente, inválido ou apontar para um schema inexistente,
+a aplicação deverá informar o problema e oferecer uma nova inicialização, sem
+selecionar silenciosamente outro projeto.
+
+## 1.6 Inteligência artificial
+
+O sistema utilizará embeddings gerados a partir do título e da descrição das
+tarefas. Ao cadastrar uma nova tarefa, a aplicação poderá compará-la com as
+tarefas existentes e sugerir possíveis duplicatas ou tarefas relacionadas.
+Essa funcionalidade servirá como apoio à organização do projeto, sem alterar
+automaticamente os dados.
+
+## 1.7 Fora do escopo
+
+Não fazem parte desta versão:
+
+- recriar o GitHub ou hospedar repositórios;
+- implementar um servidor Git;
+- merge automático e resolução de conflitos;
+- gerenciamento avançado de permissões do GitHub;
+- LLMs, geração automática de textos e classificação automática;
+- criação de um editor de código ou de texto;
+- operações destrutivas sem confirmação explícita.
