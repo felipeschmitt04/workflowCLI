@@ -1,27 +1,31 @@
 # 8. Roteiro de implementação
 
 1. Validar o modelo conceitual e recriar o diagrama.
-2. Definir o catálogo `public` e o schema exclusivo de cada projeto.
+2. Definir o catálogo `public`, as identidades globais e as associações de
+   participantes com projetos.
 3. Derivar o modelo lógico com PKs, FKs e restrições.
 4. Criar e testar o DDL do PostgreSQL para o catálogo e para o schema de
    projeto.
-5. Implementar o comando `workflowcli` e a descoberta da pasta de trabalho.
+5. Implementar os comandos `workflowcli`, `workflowcli .`, `workflowcli init`,
+   `workflowcli projects` e `workflowcli open`.
 6. Implementar o fluxo guiado de primeira execução e o marcador local.
 7. Implementar criação, seleção, troca de contexto e remoção de schemas.
 8. Implementar conexão, carga inicial e remoção das tabelas do schema atual.
-9. Implementar CRUD de participantes, projetos e tarefas.
-10. Implementar etiquetas, comentários e dependências entre tarefas.
-11. Implementar as três consultas e seus gráficos.
-12. Implementar a geração e o armazenamento de embeddings das tarefas.
-13. Implementar a busca de tarefas semelhantes e a sugestão de possíveis
+9. Implementar CRUD de participantes globais, projetos e associações de
+   acesso.
+10. Implementar CRUD de tarefas.
+11. Implementar etiquetas, comentários e dependências entre tarefas.
+12. Implementar as três consultas e seus gráficos.
+13. Implementar a geração e o armazenamento de embeddings das tarefas.
+14. Implementar a busca de tarefas semelhantes e a sugestão de possíveis
    duplicatas.
-14. Implementar a interface TUI com a biblioteca Textual, incluindo telas,
+15. Implementar a interface TUI com a biblioteca Textual, incluindo telas,
     menus, navegação por teclado e demonstração das operações do sistema.
-15. Verificar a instalação do `git` e do `gh`.
-16. Implementar autenticação com `gh auth status`.
-17. Implementar operações GitHub com confirmação e tratamento de erros.
-18. Implementar consultas ao repositório Git local.
-19. Atualizar o relatório com exemplos reais, resultados e instruções de
+16. Verificar a instalação do `git` e do `gh`.
+17. Implementar autenticação com `gh auth status`.
+18. Implementar operações GitHub com confirmação e tratamento de erros.
+19. Implementar consultas ao repositório Git local.
+20. Atualizar o relatório com exemplos reais, resultados e instruções de
     execução.
 
 O núcleo local deve ser concluído e demonstrável antes das integrações

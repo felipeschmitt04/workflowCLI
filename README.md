@@ -7,10 +7,11 @@ integração opcional com repositórios Git locais e com a API do GitHub.
 ## Escopo
 
 O núcleo do sistema gerencia participantes, projetos e tarefas em um banco
-PostgreSQL. Cada projeto possui um schema próprio com uma cópia completa do
-modelo da aplicação, mantendo seus dados isolados dos demais projetos. A
-aplicação deverá oferecer operações de cadastro, consulta, alteração e
-exclusão, além das consultas agregadas exigidas pelo trabalho.
+PostgreSQL. Cada projeto possui um schema próprio com as tabelas operacionais
+da aplicação, mantendo seus dados isolados dos demais projetos. Participantes
+e projetos ficam no catálogo global. A aplicação deverá oferecer operações de
+cadastro, consulta, alteração e exclusão, além das consultas agregadas exigidas
+pelo trabalho.
 
 ## Uso esperado
 
@@ -20,12 +21,26 @@ Dentro da pasta de um projeto, o usuário executará:
 workflowcli
 ```
 
-Na primeira execução naquele diretório, a aplicação deverá iniciar um
+O comando `workflowcli` abrirá o projeto associado à pasta atual. A forma
+explícita equivalente será:
+
+```text
+workflowcli .
+```
+
+Para criar um novo projeto na pasta atual, o usuário executará:
+
+```text
+workflowcli init
+```
+
+Na primeira execução de `workflowcli init`, a aplicação deverá iniciar um
 assistente de configuração para solicitar as informações necessárias, criar o
 registro do projeto no catálogo central, gerar seu schema PostgreSQL, criar as
-tabelas e gravar um marcador local que identifique o contexto. Nas execuções
-seguintes, o marcador será localizado e a aplicação abrirá diretamente no
-schema correspondente.
+tabelas e gravar um marcador local que identifique o contexto. O participante
+será uma identidade global e poderá ter acesso a vários projetos. Nas
+execuções seguintes, o marcador será localizado e a aplicação abrirá
+diretamente no schema correspondente.
 
 Como integração complementar, a aplicação poderá consultar e alterar issues,
 pull requests, comentários e labels do GitHub. Essa integração utilizará o

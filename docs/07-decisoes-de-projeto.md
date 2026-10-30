@@ -20,10 +20,11 @@ aplicação com o `search_path` do PostgreSQL. A pasta de trabalho do projeto
 servirá como ponto de descoberta do contexto, por meio de um marcador local
 que referencia o projeto ou seu schema.
 
-Como consequência do isolamento, um participante cadastrado em um schema não
-será compartilhado automaticamente com outros projetos. A aplicação tratará
-cada schema como um ambiente independente, sem relacionamentos entre entidades
-de projetos diferentes.
+As identidades dos participantes ficarão no catálogo global e poderão ser
+associadas a vários projetos por meio de uma tabela de relacionamento. Os
+dados operacionais, como tarefas, comentários e etiquetas, permanecerão
+isolados no schema do projeto. Assim, o mesmo participante pode acessar vários
+projetos sem misturar os dados operacionais entre eles.
 
 Para efeitos de demonstração, a criação e a carga podem ser executadas em um
 único schema de projeto. A remoção pode apagar os dados e tabelas desse schema
@@ -42,10 +43,11 @@ semelhante ao modo como o Git identifica um repositório a partir de uma pasta
 `.git`.
 
 Na primeira execução, um fluxo guiado solicitará as informações iniciais,
-como nome do projeto, identificador do schema e parâmetros de conexão com o
-PostgreSQL quando ainda não estiverem configurados. Em seguida, a aplicação
-criará o registro no catálogo `public`, provisionará o schema e aplicará o
-modelo completo. Por fim, gravará um marcador local com a referência do
+como nome do projeto, identificador do schema, participante inicial e
+parâmetros de conexão com o PostgreSQL quando ainda não estiverem
+configurados. Em seguida, a aplicação criará o registro no catálogo `public`,
+associará o participante ao projeto, provisionará o schema e aplicará as
+tabelas operacionais. Por fim, gravará um marcador local com a referência do
 projeto e do schema.
 
 Nas execuções posteriores, o marcador será localizado na pasta atual ou em um
@@ -56,6 +58,11 @@ usado para armazenar senhas, tokens ou outras credenciais.
 Um marcador ausente, inválido ou incompatível deverá produzir uma mensagem
 explícita e oferecer uma nova inicialização, nunca selecionar silenciosamente
 outro projeto.
+
+O comando `workflowcli projects` exibirá os projetos associados ao participante
+atual. O comando `workflowcli open <projeto>` permitirá abrir um projeto
+autorizado diretamente, enquanto a TUI poderá oferecer a mesma seleção após a
+abertura do contexto local.
 
 ## 7.4 Aplicação em Python
 

@@ -4,8 +4,10 @@ O modelo lógico será derivado do modelo conceitual e implementado em
 PostgreSQL. A aplicação utilizará a arquitetura **schema-per-project**:
 
 - o schema `public` terá o catálogo central de projetos;
+- o schema `public` terá as identidades globais de participantes e suas
+  associações com projetos;
 - cada projeto terá um schema próprio;
-- cada schema de projeto conterá o modelo completo da aplicação;
+- cada schema de projeto conterá as tabelas operacionais da aplicação;
 - as tabelas de projetos diferentes não compartilharão dados de domínio.
 
 Cada tabela deverá indicar sua chave primária, suas chaves estrangeiras,
@@ -16,10 +18,11 @@ atributos obrigatórios e regras de integridade.
 ### Catálogo central (`public`)
 
 - `projeto`
+- `participante`
+- `participante_projeto`
 
 ### Schema de cada projeto
 
-- `participante`
 - `status`
 - `prioridade`
 - `categoria`
@@ -29,11 +32,13 @@ atributos obrigatórios e regras de integridade.
 - `tarefa_etiqueta`
 - `comentario`
 - `dependencia_tarefa`
+- `embedding_tarefa`
 
 ## 4.2 Regras a definir no modelo final
 
 - unicidade do nome ou identificador de projetos;
-- unicidade de e-mail de participantes;
+- unicidade de e-mail ou identificador global de participantes;
+- unicidade da associação entre participante e projeto;
 - valores permitidos para status e prioridade;
 - obrigatoriedade de projeto e título na tarefa;
 - comportamento ao excluir um projeto com tarefas;

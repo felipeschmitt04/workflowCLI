@@ -8,73 +8,80 @@
   participantes.
 - **RF02:** o sistema deve permitir cadastrar, consultar, alterar e remover
   projetos.
-- **RF03:** cada projeto deve possuir seus próprios participantes, isolados dos
-  participantes dos demais projetos.
+- **RF03:** um participante deve possuir uma identidade global no catálogo
+  central e poder estar associado a vários projetos.
 - **RF04:** o sistema deve impedir a remoção de registros que possuam
   dependências, ou deve tratá-la conforme as regras definidas no modelo
   lógico.
+- **RF05:** o sistema deve permitir listar os projetos aos quais o participante
+  atual possui acesso e selecionar um deles.
 
 ### Tarefas
 
-- **RF05:** o sistema deve permitir cadastrar, consultar, alterar e remover
+- **RF06:** o sistema deve permitir cadastrar, consultar, alterar e remover
   tarefas.
-- **RF06:** cada tarefa deve possuir título, descrição, status, prioridade,
+- **RF07:** cada tarefa deve possuir título, descrição, status, prioridade,
   prazo e responsável, quando aplicável.
-- **RF07:** uma tarefa deve pertencer ao projeto correspondente ao schema
+- **RF08:** uma tarefa deve pertencer ao projeto correspondente ao schema
   atualmente selecionado.
-- **RF08:** o sistema deve permitir associar etiquetas e comentários às
+- **RF09:** o sistema deve permitir associar etiquetas e comentários às
   tarefas.
-- **RF09:** o sistema deve permitir registrar dependências entre tarefas,
+- **RF10:** o sistema deve permitir registrar dependências entre tarefas,
   indicando quando uma tarefa bloqueia outra.
-- **RF10:** o sistema deve respeitar as dependências entre tabelas em todas as
+- **RF11:** o sistema deve respeitar as dependências entre tabelas em todas as
   operações de CRUD.
 
 ### Banco de dados e consultas
 
-- **RF11:** o comando `workflowcli` deve iniciar a aplicação a partir da
+- **RF12:** o comando `workflowcli` deve iniciar a aplicação a partir da
   pasta de trabalho atual.
-- **RF12:** a aplicação deve conectar-se a um banco PostgreSQL.
-- **RF13:** na primeira execução em uma pasta, a aplicação deve solicitar as
+- **RF13:** o comando `workflowcli .` deve abrir explicitamente o projeto
+  associado à pasta atual.
+- **RF14:** o comando `workflowcli init` deve iniciar o fluxo de criação de um
+  novo projeto na pasta atual.
+- **RF15:** a aplicação deve conectar-se a um banco PostgreSQL.
+- **RF16:** na primeira execução de `workflowcli init`, a aplicação deve
+  solicitar as
   informações iniciais necessárias para configurar o projeto.
-- **RF14:** a aplicação deve permitir criar um projeto e seu schema exclusivo,
-  contendo o modelo completo da aplicação.
-- **RF15:** a aplicação deve oferecer uma opção para criar as tabelas e
+- **RF17:** a aplicação deve permitir criar um projeto e seu schema exclusivo,
+  contendo as tabelas operacionais da aplicação.
+- **RF18:** a aplicação deve oferecer uma opção para criar as tabelas e
   carregar dados iniciais no schema do projeto atual.
-- **RF16:** a aplicação deve oferecer uma opção para remover as tabelas e os
+- **RF19:** a aplicação deve oferecer uma opção para remover as tabelas e os
   dados do schema do projeto atual.
-- **RF17:** a aplicação deve permitir excluir o schema completo de um projeto,
+- **RF20:** a aplicação deve permitir excluir o schema completo de um projeto,
   mediante confirmação explícita.
-- **RF18:** a aplicação deve localizar o marcador do projeto na pasta atual ou
+- **RF21:** a aplicação deve localizar o marcador do projeto na pasta atual ou
   em um diretório pai e selecionar o schema correspondente.
-- **RF19:** a aplicação deve impedir que dados de um projeto sejam acessados
+- **RF22:** a aplicação deve impedir que dados de um projeto sejam acessados
   acidentalmente a partir do schema de outro projeto.
-- **RF20:** a aplicação deve executar três consultas agregadas envolvendo pelo
+- **RF23:** a aplicação deve executar três consultas agregadas envolvendo pelo
   menos três tabelas.
-- **RF21:** cada consulta deve apresentar o resultado em formato tabular e em
+- **RF24:** cada consulta deve apresentar o resultado em formato tabular e em
   representação gráfica.
 
 ### Inteligência artificial
 
-- **RF22:** o sistema deve gerar um embedding a partir do título e da
+- **RF25:** o sistema deve gerar um embedding a partir do título e da
   descrição de cada tarefa elegível.
-- **RF23:** ao cadastrar ou consultar uma tarefa, o sistema deve permitir
+- **RF26:** ao cadastrar ou consultar uma tarefa, o sistema deve permitir
   buscar tarefas semanticamente semelhantes.
-- **RF24:** o sistema deve apresentar as tarefas sugeridas como possíveis
+- **RF27:** o sistema deve apresentar as tarefas sugeridas como possíveis
   duplicatas ou tarefas relacionadas, deixando a decisão final para o usuário.
 
 ### GitHub e Git
 
-- **RF25:** a aplicação deve verificar a autenticação do usuário por meio do
+- **RF28:** a aplicação deve verificar a autenticação do usuário por meio do
   GitHub CLI (`gh`).
-- **RF26:** a aplicação deve permitir listar, criar, editar e fechar issues
+- **RF29:** a aplicação deve permitir listar, criar, editar e fechar issues
   por meio da API do GitHub.
-- **RF27:** a aplicação deve permitir consultar e criar pull requests, desde
+- **RF30:** a aplicação deve permitir consultar e criar pull requests, desde
   que as branches necessárias já existam no repositório remoto.
-- **RF28:** a aplicação deve permitir adicionar comentários e labels em issues
+- **RF31:** a aplicação deve permitir adicionar comentários e labels em issues
   quando o usuário possuir a permissão necessária.
-- **RF29:** a aplicação deve permitir consultar branches, commits e status de
+- **RF32:** a aplicação deve permitir consultar branches, commits e status de
   um repositório Git local.
-- **RF30:** falhas de internet, de autenticação ou de permissão devem ser
+- **RF33:** falhas de internet, de autenticação ou de permissão devem ser
   informadas claramente e não podem corromper os dados locais.
 
 ## 2.2 Requisitos não funcionais
