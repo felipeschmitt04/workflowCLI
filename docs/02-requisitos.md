@@ -41,8 +41,7 @@
   novo projeto na pasta atual.
 - **RF15:** a aplicação deve conectar-se a um banco PostgreSQL.
 - **RF16:** na primeira execução de `workflowcli init`, a aplicação deve
-  solicitar as
-  informações iniciais necessárias para configurar o projeto.
+  solicitar as informações iniciais necessárias para configurar o projeto.
 - **RF17:** a aplicação deve permitir criar um projeto e seu schema exclusivo,
   contendo as tabelas operacionais da aplicação.
 - **RF18:** a aplicação deve oferecer uma opção para criar as tabelas e
