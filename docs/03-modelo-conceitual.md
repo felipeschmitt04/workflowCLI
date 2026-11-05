@@ -104,26 +104,26 @@ Representa uma classificação funcional das tarefas do projeto.
 - `nome`;
 - `descricao`.
 
-### Marco
+### Checkpoint
 
 Representa uma etapa ou objetivo importante do projeto.
 
 **Atributos sugeridos:**
 
-- `id_marco`;
+- `id_checkpoint`;
 - `nome`;
 - `descricao`;
 - `data_inicio`;
 - `data_fim`;
 
-### Etiqueta
+### Label
 
 Representa uma classificação reutilizável, como `bug`, `documentacao` ou
 `urgente`.
 
 **Atributos sugeridos:**
 
-- `id_etiqueta`;
+- `id_label`;
 - `nome`;
 - `cor`;
 
@@ -162,15 +162,15 @@ ou relacionamento recursivo, pois liga a entidade `Tarefa` a ela mesma.
 - `id_tarefa_bloqueada`;
 - `criada_em`.
 
-### TarefaEtiqueta
+### TarefaLabel
 
-Representa a associação entre tarefas e etiquetas. É uma entidade associativa
+Representa a associação entre tarefas e labels. É uma entidade associativa
 necessária porque a relação é muitos-para-muitos.
 
 **Atributos sugeridos:**
 
 - `id_tarefa`;
-- `id_etiqueta`;
+- `id_label`;
 - `associada_em`.
 
 ## 3.3 Relacionamentos e cardinalidades
@@ -185,16 +185,16 @@ As cardinalidades abaixo são as recomendadas para o diagrama Chen:
 | `Status` — **classifica** — `Tarefa` | Status `(0,N)`; Tarefa `(1,1)` | Cada tarefa possui exatamente um status. |
 | `Prioridade` — **define** — `Tarefa` | Prioridade `(0,N)`; Tarefa `(1,1)` | Cada tarefa possui exatamente uma prioridade. |
 | `Categoria` — **organiza** — `Tarefa` | Categoria `(0,N)`; Tarefa `(0,1)` | Uma tarefa pode não ter categoria ou possuir uma categoria. |
-| `Marco` — **agrupa** — `Tarefa` | Marco `(0,N)`; Tarefa `(0,1)` | Uma tarefa pode estar associada opcionalmente a um marco. |
+| `Checkpoint` — **agrupa** — `Tarefa` | Checkpoint `(0,N)`; Tarefa `(0,1)` | Uma tarefa pode estar associada opcionalmente a um checkpoint. |
 | `Tarefa` — **recebe** — `Comentario` | Tarefa `(0,N)`; Comentario `(1,1)` | Uma tarefa pode ter vários comentários; cada comentário pertence a uma tarefa. |
 | `Participante` — **escreve** — `Comentario` | Participante `(0,N)`; Comentario `(1,1)` | Um participante pode escrever vários comentários; cada comentário possui um autor. |
-| `Tarefa` — **possui** — `Etiqueta` | Tarefa `(0,N)`; Etiqueta `(0,N)` | Uma tarefa pode ter várias etiquetas e uma etiqueta pode classificar várias tarefas. |
+| `Tarefa` — **possui** — `Label` | Tarefa `(0,N)`; Label `(0,N)` | Uma tarefa pode ter vários labels e um label pode classificar várias tarefas. |
 | `Tarefa` — **possui embedding** — `EmbeddingTarefa` | Tarefa `(0,1)`; EmbeddingTarefa `(1,1)` | Uma tarefa pode ainda não ter embedding; cada embedding pertence a uma tarefa. |
 | `Tarefa` — **bloqueia** — `Tarefa` | Tarefa bloqueadora `(0,N)`; Tarefa bloqueada `(0,N)` | Uma tarefa pode bloquear várias outras e também depender de várias tarefas. |
 
 ## 3.4 Observações para o diagrama Chen
 
-- `ParticipanteProjeto`, `TarefaEtiqueta` e `DependenciaTarefa` podem ser
+- `ParticipanteProjeto`, `TarefaLabel` e `DependenciaTarefa` podem ser
   desenhadas como entidades associativas ou representadas diretamente como
   relacionamentos com atributos.
 - `DependenciaTarefa` deve ser desenhada como um relacionamento recursivo

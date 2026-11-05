@@ -14,7 +14,7 @@
 9. Implementar CRUD de participantes globais, projetos e associações de
    acesso.
 10. Implementar CRUD de tarefas.
-11. Implementar etiquetas, comentários e dependências entre tarefas.
+11. Implementar labels, comentários e dependências entre tarefas.
 12. Implementar as três consultas e seus gráficos.
 13. Implementar a geração e o armazenamento de embeddings das tarefas.
 14. Implementar a busca de tarefas semelhantes e a sugestão de possíveis

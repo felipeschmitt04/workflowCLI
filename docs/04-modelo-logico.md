@@ -26,10 +26,10 @@ atributos obrigatórios e regras de integridade.
 - `status`
 - `prioridade`
 - `categoria`
-- `marco`
+- `checkpoint`
 - `tarefa`
-- `etiqueta`
-- `tarefa_etiqueta`
+- `label`
+- `tarefa_label`
 - `comentario`
 - `dependencia_tarefa`
 - `embedding_tarefa`

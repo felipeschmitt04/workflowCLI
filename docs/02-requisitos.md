@@ -24,7 +24,7 @@
   prazo e responsável, quando aplicável.
 - **RF08:** uma tarefa deve pertencer ao projeto correspondente ao schema
   atualmente selecionado.
-- **RF09:** o sistema deve permitir associar etiquetas e comentários às
+- **RF09:** o sistema deve permitir associar labels e comentários às
   tarefas.
 - **RF10:** o sistema deve permitir registrar dependências entre tarefas,
   indicando quando uma tarefa bloqueia outra.

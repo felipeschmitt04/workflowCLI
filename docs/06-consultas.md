@@ -19,7 +19,7 @@ projeto atual.
 **Objetivo:** mostrar quantas tarefas existem em cada status, agrupadas por
 prioridade no schema do projeto atual.
 
-**Tabelas previstas:** `tarefa`, `status`, `prioridade` e `etiqueta`.
+**Tabelas previstas:** `tarefa`, `status`, `prioridade` e `label`.
 
 **Agregação:** `COUNT`.
 

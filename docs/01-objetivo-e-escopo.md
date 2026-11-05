@@ -26,7 +26,7 @@ Fazem parte do núcleo do sistema:
 - associação de participantes a projetos;
 - cadastro e manutenção de tarefas;
 - controle de status, prioridade, prazo e responsável;
-- etiquetas, comentários e dependências entre tarefas;
+- labels, comentários e dependências entre tarefas;
 - consultas agregadas sobre projetos e tarefas;
 - criação, carga inicial e remoção das tabelas do banco;
 - sugestão de tarefas semelhantes por meio de embeddings.

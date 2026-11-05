@@ -22,7 +22,7 @@ que referencia o projeto ou seu schema.
 
 As identidades dos participantes ficarão no catálogo global e poderão ser
 associadas a vários projetos por meio de uma tabela de relacionamento. Os
-dados operacionais, como tarefas, comentários e etiquetas, permanecerão
+dados operacionais, como tarefas, comentários e labels, permanecerão
 isolados no schema do projeto. Assim, o mesmo participante pode acessar vários
 projetos sem misturar os dados operacionais entre eles.
 
